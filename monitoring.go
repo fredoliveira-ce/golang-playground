@@ -1,34 +1,19 @@
 package main
 
 import "fmt"
-import "reflect"
 import "os"
 import "net/http"
 
 func main()  {
 	var name string = "Fred"
-	company := "Fred"
 	var version float32 = 1.1
-	var aFloatValue = 1.1
 	var age int = 24
 
 	fmt.Println("Hello, Sr.!", name, ", we're at the vertion", version)
 	fmt.Println("Your age is", age)
-	fmt.Println("The type of the variable name is: ", reflect.TypeOf(name))
-	fmt.Println("The type of the variable aFloatValue is: ", reflect.TypeOf(aFloatValue))
-	fmt.Println("The type of the variable company is: ", reflect.TypeOf(company))
 	
 	showIntroduction()
 	
-	// if command == 1 {
-	// 	fmt.Println("Monitoring")
-	// } else if command == 2 {
-	// 	fmt.Println("Showing logs")
-	// } else if command == 0 {
-		
-	// } else {
-	// 	fmt.Println("The command is not valid")
-	// }
 	for {
 		command := readInput()
 
@@ -42,7 +27,7 @@ func main()  {
 				fmt.Println("Name is: ", name, " and Age is: ", age)
 			case 4: 
 				name, _ := returnNameAndAge()
-				fmt.Println("Name is: ", name)
+				fmt.Println("Name is: ", name, " and I don't need the age now.")
 			case 0: 
 				fmt.Println("Exiting")
 				os.Exit(0)
@@ -51,8 +36,6 @@ func main()  {
 				os.Exit(-1)
 		}
 	}
-	
-	
 
 }
 
