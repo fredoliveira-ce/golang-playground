@@ -65,8 +65,8 @@ func returnNameAndAge() (string, int) {
 }
 
 func initMonitoring() {
-	fmt.Println("Monitoring")
-	site := "https://servicos.sda.ce.gov.br/ateratividades/api/users"
+	fmt.Println("Monitoring...")
+	site := "https://dictionary.cambridge.org/us/"
 	response, error := http.Get(site)
 	
 	if(response.StatusCode == 200) {
