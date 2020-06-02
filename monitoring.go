@@ -96,7 +96,7 @@ func readSiteFromFile() [] string {
 		}
 	}
 
-	fmt.Println(sites)
+	file.Close()
 	
 	return sites
 }
