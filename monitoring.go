@@ -4,19 +4,22 @@ import "fmt"
 import "os"
 import "net/http"
 
-func main()  {	
+const menuInitMonitoring = 1
+const menuShowLogs = 2
+const menuExit = 0
 
-	showIntroduction()
-	
+func main()  {	
 	for {
+		showIntroduction()
+
 		command := readInput()
 
 		switch command {
-			case 1: 
+			case menuInitMonitoring: 
 				initMonitoring()
-			case 2: 
+			case menuShowLogs: 
 				fmt.Println("Showing logs")
-			case 0: 
+			case menuExit: 
 				fmt.Println("Exiting")
 				os.Exit(0)
 			default: 
@@ -35,7 +38,6 @@ func showIntroduction() {
 func readInput() int {
 	var command int
 	fmt.Scanf("%d", &command)
-	//fmt.Scan(&command)
 	fmt.Println("The command chosen was: ", command)
 	fmt.Println("The variable address of the command is: ", &command)
 
@@ -49,17 +51,17 @@ func initMonitoring() {
 	fmt.Println(sites)
 
 	for i, site := range sites {
-		fmt.Println("I'm at position", i, "of my slice and in this position I have the site:", site)
+		fmt.Println("Testing site: ", i, ":", site)
+		testSite(site)
 	}
+}
 
-	site := "https://dictionary.cambridge.org/us/"
-
+func testSite(site string) {
 	response, error := http.Get(site)
 	
 	if(response.StatusCode == 200) {
 		fmt.Println(response)
 	} else {
-		fmt.Println("The website:", error, "has a problem", response.StatusCode)
+		fmt.Println("ERROR: the website: ", error, "has a problem", response.StatusCode)
 	}
-	
 }
