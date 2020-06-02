@@ -105,13 +105,13 @@ func readSiteFromFile() [] string {
 }
 
 func writeLogs(site string, status bool) {
-	file, error := os.OpenFile("logs.txt", os.O_CREATE|os.O_RDWR, 0666)
+	file, error := os.OpenFile("logs.txt", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0666)
 
 	if error != nil {
 		fmt.Println("Error - details: ", error)
 	}
 
-	file.WriteString(site + " - online: " + strconv.FormatBool(status))
+	file.WriteString(site + " - online: " + strconv.FormatBool(status) + "\n")
 
 	fmt.Println(file)
 }
