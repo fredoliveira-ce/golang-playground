@@ -69,8 +69,10 @@ func testSite(site string) {
 
 	if(response.StatusCode == 200) {
 		fmt.Println(response)
+		writeLogs(site, true)
 	} else {
 		fmt.Println("ERROR: the website has a problem: ", error, response.StatusCode)
+		writeLogs(site, false)
 	}
 }
 
@@ -99,4 +101,14 @@ func readSiteFromFile() [] string {
 	file.Close()
 	
 	return sites
+}
+
+func writeLogs(site string, status bool) {
+	file, error := os.OpenFile("logs.txt", os.O_CREATE|os.O_RDWR, 0666)
+
+	if error != nil {
+		fmt.Println("Error - details: ", error)
+	}
+
+	fmt.Println(file)
 }
