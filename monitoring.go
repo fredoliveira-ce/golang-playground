@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"bufio"
+	"strconv"
 )
 
 
@@ -109,6 +110,8 @@ func writeLogs(site string, status bool) {
 	if error != nil {
 		fmt.Println("Error - details: ", error)
 	}
+
+	file.WriteString(site + " - online: " + strconv.FormatBool(status))
 
 	fmt.Println(file)
 }
