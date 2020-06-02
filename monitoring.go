@@ -3,6 +3,8 @@ package main
 import "fmt"
 import "os"
 import "net/http"
+import "bufio"
+
 
 const menuInitMonitoring = 1
 const menuShowLogs = 2
@@ -62,7 +64,7 @@ func testSite(site string) {
 	if error != nil {
 		fmt.Println("Error! Details: ", error)
 	}
-	
+
 	if(response.StatusCode == 200) {
 		fmt.Println(response)
 	} else {
@@ -79,7 +81,14 @@ func readSiteFromFile() [] string {
 		fmt.Println("Error, details: ", error)
 	}
 
-	fmt.Println(file)
+	reader := bufio.NewReader(file)
+	line, error := reader.ReadString('\n')
+
+	if(error != nil) {
+		fmt.Println("Error, details: ", error)
+	}
+
+	fmt.Println(line)
 	
 	return sites
 }
