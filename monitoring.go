@@ -37,7 +37,7 @@ func main()  {
 
 func showIntroduction() {
 	fmt.Println("1- Start Monitoring")
-	fmt.Println("2- Show logs")
+	fmt.Println("2- Show Logs")
 	fmt.Println("0- Exit")
 }
 
