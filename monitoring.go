@@ -24,12 +24,12 @@ func main()  {
 			case menuInitMonitoring: 
 				initMonitoring()
 			case menuShowLogs: 
-				fmt.Println("Showing logs")
+				fmt.Println("Showing logs.")
 			case menuExit: 
-				fmt.Println("Exiting")
+				fmt.Println("Exiting.")
 				os.Exit(0)
 			default: 
-				fmt.Println("The command is not valid")
+				fmt.Println("The command is not valid.")
 				os.Exit(-1)
 		}
 	}
