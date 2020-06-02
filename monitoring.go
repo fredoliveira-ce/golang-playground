@@ -1,9 +1,13 @@
 package main
 
-import "fmt"
-import "os"
-import "net/http"
-import "bufio"
+import (
+	"strings"
+	"fmt"
+	"os"
+	"io"
+	"net/http"
+	"bufio"
+)
 
 
 const menuInitMonitoring = 1
@@ -50,8 +54,6 @@ func initMonitoring() {
 	fmt.Println("Monitoring...")
 	sites := readSiteFromFile()
 
-	fmt.Println(sites)
-
 	for i, site := range sites {
 		fmt.Println("Testing site: ", i, ":", site)
 		testSite(site)
@@ -68,7 +70,7 @@ func testSite(site string) {
 	if(response.StatusCode == 200) {
 		fmt.Println(response)
 	} else {
-		fmt.Println("ERROR: the website: ", error, "has a problem", response.StatusCode)
+		fmt.Println("ERROR: the website has a problem: ", error, response.StatusCode)
 	}
 }
 
@@ -82,13 +84,19 @@ func readSiteFromFile() [] string {
 	}
 
 	reader := bufio.NewReader(file)
-	line, error := reader.ReadString('\n')
+	
+	for {
+		line, error := reader.ReadString('\n')
+		line = strings.TrimSpace(line)
+		
+		sites = append(sites, line)
 
-	if(error != nil) {
-		fmt.Println("Error, details: ", error)
+		if error == io.EOF {
+			break
+		}
 	}
 
-	fmt.Println(line)
+	fmt.Println(sites)
 	
 	return sites
 }
