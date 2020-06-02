@@ -4,14 +4,8 @@ import "fmt"
 import "os"
 import "net/http"
 
-func main()  {
-	var name string = "Fred"
-	var version float32 = 1.1
-	var age int = 24
+func main()  {	
 
-	fmt.Println("Hello, Sr.!", name, ", we're at the vertion", version)
-	fmt.Println("Your age is", age)
-	
 	showIntroduction()
 	
 	for {
@@ -22,12 +16,6 @@ func main()  {
 				initMonitoring()
 			case 2: 
 				fmt.Println("Showing logs")
-			case 3: 
-				name, age := returnNameAndAge()
-				fmt.Println("Name is: ", name, " and Age is: ", age)
-			case 4: 
-				name, _ := returnNameAndAge()
-				fmt.Println("Name is: ", name, " and I don't need the age now.")
 			case 0: 
 				fmt.Println("Exiting")
 				os.Exit(0)
@@ -36,14 +24,11 @@ func main()  {
 				os.Exit(-1)
 		}
 	}
-
 }
 
 func showIntroduction() {
 	fmt.Println("1- Start Monitoring")
 	fmt.Println("2- Show logs")
-	fmt.Println("3- Show name and age")
-	fmt.Println("4- Show only name")
 	fmt.Println("0- Exit")
 }
 
@@ -57,16 +42,18 @@ func readInput() int {
 	return command
 }
 
-func returnNameAndAge() (string, int) {
-	name := "Fred"
-	age := 30
-
-	return name, age
-}
-
 func initMonitoring() {
 	fmt.Println("Monitoring...")
+	sites := [] string { "https://golang.org/doc/", "https://dictionary.cambridge.org/us/", "https://edition.cnn.com/" }
+
+	fmt.Println(sites)
+
+	for i, site := range sites {
+		fmt.Println("I'm at position", i, "of my slice and in this position I have the site:", site)
+	}
+
 	site := "https://dictionary.cambridge.org/us/"
+
 	response, error := http.Get(site)
 	
 	if(response.StatusCode == 200) {
