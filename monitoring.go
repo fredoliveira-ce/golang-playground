@@ -46,7 +46,7 @@ func readInput() int {
 
 func initMonitoring() {
 	fmt.Println("Monitoring...")
-	sites := [] string { "https://golang.org/doc/", "https://dictionary.cambridge.org/us/", "https://edition.cnn.com/" }
+	sites := readSiteFromFile()
 
 	fmt.Println(sites)
 
@@ -59,9 +59,27 @@ func initMonitoring() {
 func testSite(site string) {
 	response, error := http.Get(site)
 	
+	if error != nil {
+		fmt.Println("Error! Details: ", error)
+	}
+	
 	if(response.StatusCode == 200) {
 		fmt.Println(response)
 	} else {
 		fmt.Println("ERROR: the website: ", error, "has a problem", response.StatusCode)
 	}
+}
+
+func readSiteFromFile() [] string {
+	var sites [] string
+
+	file, error := os.Open("sites.txt")
+
+	if(error != nil) {
+		fmt.Println("Error, details: ", error)
+	}
+
+	fmt.Println(file)
+	
+	return sites
 }

@@ -1,0 +1,3 @@
+https://golang.org/doc/
+https://dictionary.cambridge.org/us/
+https://edition.cnn.com/
