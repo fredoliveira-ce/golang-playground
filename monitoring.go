@@ -9,8 +9,8 @@ import (
 	"bufio"
 	"strconv"
 	"time"
+	"io/ioutil"
 )
-
 
 const menuInitMonitoring = 1
 const menuShowLogs = 2
@@ -26,7 +26,7 @@ func main()  {
 			case menuInitMonitoring: 
 				initMonitoring()
 			case menuShowLogs: 
-				fmt.Println("Showing logs.")
+				printLogs()
 			case menuExit: 
 				fmt.Println("Exiting.")
 				os.Exit(0)
@@ -115,4 +115,14 @@ func writeLogs(site string, status bool) {
 	file.WriteString(time.Now().Format("02/01/2006 15:04:05") + " - " + site + " - online: " + strconv.FormatBool(status) + "\n")
 
 	fmt.Println(file)
+}
+
+func printLogs() {
+	file, error := ioutil.ReadFile("logs.txt") // we don't need to clese when we're using ioutil.ReadFile
+
+	if error != nil {
+		fmt.Println(file)
+	}
+
+	fmt.Println(string(file))
 }
