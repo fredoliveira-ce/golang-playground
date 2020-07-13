@@ -1,4 +1,4 @@
-package main
+package typeof
 
 import "fmt"
 import "reflect"
@@ -17,4 +17,10 @@ func showVariableType()  {
 	fmt.Println("The type of the variable aFloatValue is: ", reflect.TypeOf(aFloatValue))
 	fmt.Println("The type of the variable company is: ", reflect.TypeOf(company))
 	fmt.Println("The type of the variable version is: ", reflect.TypeOf(version))
+
+	var b byte = 255
+	fmt.Println("The type of the variable b is:", b) //have to print uint8
+
+	var unicode rune = 'a'
+	fmt.Println("The type of the variable rune is: ", reflect.TypeOf(unicode))
 }
