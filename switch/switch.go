@@ -20,6 +20,21 @@ func main() {
 	}
 }
 
+func types(i interface{}) string {
+	switch i.(type) {
+	case int:
+		return "integer"
+	case float32, float64:
+		return "float"
+	case string:
+		return "string"
+	case func():
+		return "function"
+	default:
+		return "understandable"
+	}
+}
+
 func getScore(n float64) string {
 	var note = int(n)
 	switch note {
