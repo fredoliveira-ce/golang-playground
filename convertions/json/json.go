@@ -19,6 +19,6 @@ func main()  {
 
 	var p2 product
 	jsonString := `{"id":1,"name":"ruler","price":0.3,"tags":["stationary","plastic"]}`
-	json.Unmarshal([]byte(jsonString), &p2)
+	_ = json.Unmarshal([]byte(jsonString), &p2)
 	fmt.Println(p2.Tags)
 }

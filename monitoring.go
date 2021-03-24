@@ -69,7 +69,7 @@ func testSite(site string) {
 		fmt.Println("Error! Details: ", error)
 	}
 
-	if(response.StatusCode == 200) {
+	if response.StatusCode == 200 {
 		fmt.Println(response)
 		writeLogs(site, true)
 	} else {
